@@ -2,7 +2,6 @@ package com.segware.javabackendtest.model;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Data

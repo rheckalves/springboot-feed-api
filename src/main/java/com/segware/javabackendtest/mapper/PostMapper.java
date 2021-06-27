@@ -1,6 +1,6 @@
 package com.segware.javabackendtest.mapper;
 import com.segware.javabackendtest.dto.request.PostDTO;
-import com.segware.javabackendtest.model.Post;
+import com.segware.javabackendtest.entity.Post;
 
 public interface PostMapper {
 

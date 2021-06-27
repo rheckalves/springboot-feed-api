@@ -1,4 +1,4 @@
-package com.segware.javabackendtest.model;
+package com.segware.javabackendtest.entity;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -14,13 +14,16 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String title;
-
     @Lob
     @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
     private Integer upvotes;
+
+    @Column(nullable = false)
+    private String username;
+
+    @Column(nullable = false)
+    private Long userId;
 }

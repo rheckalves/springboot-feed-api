@@ -1,7 +1,7 @@
 package com.segware.javabackendtest.service;
 import com.segware.javabackendtest.config.MapperConfig;
 import com.segware.javabackendtest.dto.request.PostDTO;
-import com.segware.javabackendtest.model.Post;
+import com.segware.javabackendtest.entity.Post;
 import com.segware.javabackendtest.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;

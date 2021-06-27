@@ -2,9 +2,9 @@ package com.segware.javabackendtest.controller;
 
 import com.segware.javabackendtest.config.FakeLoginConfig;
 import com.segware.javabackendtest.dto.request.PostDTO;
+import com.segware.javabackendtest.dto.request.response.PostSummaryDTO;
 import com.segware.javabackendtest.entity.User;
 import com.segware.javabackendtest.service.PostService;
-import com.segware.javabackendtest.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/posts")
-public class PostController {
+public class PostController implements PostControllerDocs {
 
     private final PostService postService;
     private final FakeLoginConfig fakeLogin;
@@ -24,7 +24,7 @@ public class PostController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostDTO createPost(@RequestBody PostDTO post) {
+    public PostSummaryDTO createPost(@RequestBody PostDTO post) {
         User user = fakeLogin.loggedUser();
         post.setUserId(user.getId());
         post.setUsername(user.getUsername());
@@ -32,7 +32,7 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostDTO> listPosts() {
+    public List<PostSummaryDTO> listPosts() {
         return postService.listAll();
     }
 }

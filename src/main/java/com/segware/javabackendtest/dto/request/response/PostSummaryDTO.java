@@ -1,26 +1,29 @@
-package com.segware.javabackendtest.dto.request;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+package com.segware.javabackendtest.dto.request.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostDTO {
-
-    @JsonIgnore
+public class PostSummaryDTO {
+    @NotNull
     private Long id;
 
     @NotNull
     private String content;
 
-    @JsonIgnore
+    @NotNull
     private Integer upvotes = 0;
 
-    @JsonIgnore
+    @NotNull
     private String username;
 
-    @JsonIgnore
+    @NotNull
     private Long userId;
 }

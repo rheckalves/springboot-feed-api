@@ -9,10 +9,9 @@ public class PostMapperImpl implements PostMapper {
     public Post toModel(PostDTO postDTO) {
         Post post = new Post();
         post.setId(postDTO.getId());
-        post.setUserId(postDTO.getUserId());
-        post.setUsername(postDTO.getUsername());
         post.setContent(postDTO.getContent());
         post.setUpvotes(postDTO.getUpvotes());
+        post.setUser(postDTO.getUser());
         return post;
     }
 
@@ -20,10 +19,9 @@ public class PostMapperImpl implements PostMapper {
     public PostDTO toDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setId(post.getId());
-        postDTO.setUserId(post.getUserId());
-        postDTO.setUsername(post.getUsername());
         postDTO.setContent(post.getContent());
         postDTO.setUpvotes(post.getUpvotes());
+        postDTO.setUser(post.getUser());
         return postDTO;
     }
 
@@ -31,8 +29,6 @@ public class PostMapperImpl implements PostMapper {
     public Post toModel(PostSummaryDTO postSummaryDTO) {
         Post post = new Post();
         post.setId(postSummaryDTO.getId());
-        post.setUserId(postSummaryDTO.getUserId());
-        post.setUsername(postSummaryDTO.getUsername());
         post.setContent(postSummaryDTO.getContent());
         post.setUpvotes(postSummaryDTO.getUpvotes());
         return post;
@@ -42,10 +38,10 @@ public class PostMapperImpl implements PostMapper {
     public PostSummaryDTO toSummaryDTO(Post post) {
         PostSummaryDTO postSummaryDTO = new PostSummaryDTO();
         postSummaryDTO.setId(post.getId());
-        postSummaryDTO.setUserId(post.getUserId());
-        postSummaryDTO.setUsername(post.getUsername());
         postSummaryDTO.setContent(post.getContent());
         postSummaryDTO.setUpvotes(post.getUpvotes());
+        postSummaryDTO.setUserId(post.getUser().getId());
+        postSummaryDTO.setUsername(post.getUser().getUsername());
         return postSummaryDTO;
     }
 }

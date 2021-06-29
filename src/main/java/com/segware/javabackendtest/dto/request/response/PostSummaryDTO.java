@@ -24,6 +24,8 @@ public class PostSummaryDTO {
     @NotNull
     private String username;
 
+    private Boolean upvotedByUser = false;
+
     @NotNull
     private Long userId;
 }

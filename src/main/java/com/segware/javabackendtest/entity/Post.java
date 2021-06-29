@@ -1,8 +1,7 @@
 package com.segware.javabackendtest.entity;
 import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,13 +16,10 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(nullable = false)
-    private Integer upvotes;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
-    private List<Upvote> upvoteslist;
+    @ElementCollection
+    private List<Long> upvotesUserIds = new ArrayList<>();
 }

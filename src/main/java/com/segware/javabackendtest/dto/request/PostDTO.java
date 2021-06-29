@@ -2,7 +2,11 @@ package com.segware.javabackendtest.dto.request;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.segware.javabackendtest.entity.User;
 import lombok.*;
+
+import javax.persistence.ElementCollection;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Builder
@@ -14,12 +18,14 @@ public class PostDTO {
     private Long id;
 
     @NotNull
+    @NotBlank
     private String content;
-
-    @JsonIgnore
-    private Integer upvotes = 0;
 
     @JsonIgnore
     @NotNull
     private User user;
+
+    @JsonIgnore
+    private List<Long> upvotesUserIds;
+
 }

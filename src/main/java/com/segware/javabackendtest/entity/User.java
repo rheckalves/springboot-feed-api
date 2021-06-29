@@ -24,10 +24,7 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Post> posts;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Upvote> upvoteslist;
 
 }

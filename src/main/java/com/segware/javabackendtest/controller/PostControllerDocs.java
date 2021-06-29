@@ -3,13 +3,13 @@ package com.segware.javabackendtest.controller;
 import com.segware.javabackendtest.dto.request.PostDTO;
 import com.segware.javabackendtest.dto.request.UpvoteDTO;
 import com.segware.javabackendtest.dto.request.response.PostSummaryDTO;
+import com.segware.javabackendtest.dto.request.response.UpvoteSummaryDTO;
 import com.segware.javabackendtest.exception.PostNotFoundException;
 import com.segware.javabackendtest.exception.UserNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -28,7 +28,8 @@ public interface PostControllerDocs {
             @ApiResponse(code = 200, message = "Success post upvoted"),
             @ApiResponse(code = 404, message = "Post not found")
     })
-    HttpStatus upvotePost(UpvoteDTO upvoteDTO) throws PostNotFoundException;
+    UpvoteSummaryDTO upvotePost(UpvoteDTO upvoteDTO) throws PostNotFoundException, UserNotFoundException;
+
 
     @ApiOperation(value = "Returns a list of all posts registered in the system")
     @ApiResponses(value = {

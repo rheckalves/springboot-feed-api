@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class PostNotFoundException extends Exception {
 
+    @Override
+    public Throwable fillInStackTrace() {
+        return this;
+    }
+
     public PostNotFoundException(Long id) {
         super(String.format("Post with id %s not found in the system.", id));
     }

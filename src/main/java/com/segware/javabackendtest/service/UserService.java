@@ -1,11 +1,7 @@
 package com.segware.javabackendtest.service;
-
-import com.segware.javabackendtest.config.MapperConfig;
-import com.segware.javabackendtest.dto.request.UserDTO;
 import com.segware.javabackendtest.entity.User;
 import com.segware.javabackendtest.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,23 +9,24 @@ import java.util.Random;
 @Service
 public class UserService {
 
-    public UserService(UserRepository userRepository, MapperConfig mapper) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.mapper = mapper;
     }
 
     private final UserRepository userRepository;
-    private final MapperConfig mapper;
 
-    public UserDTO createUser(UserDTO userDTO) {
-        User user = mapper.userMapper().toModel(userDTO);
-        User savedUser = userRepository.save(user);
-        return mapper.userMapper().toDTO(savedUser);
+    protected Boolean verifyIfUserExists(Long userId) {
+        return userRepository.existsById(userId);
     }
+
 
     public User loginUser() {
         User user = createRandomUser();
-        return userRepository.findByUsername(user.getUsername()).orElse(userRepository.save(user));
+        if (userRepository.findByUsername(user.getUsername()).isEmpty()) {
+            userRepository.save(user);
+            return user;
+        }
+        return userRepository.findByUsername(user.getUsername()).get();
     }
 
     public static User createRandomUser() {
@@ -38,12 +35,16 @@ public class UserService {
         User userThree = new User("astolfo44");
         User userFour = new User("anastacio33");
         User userFive = new User("genoveva88");
+        User userSix = new User("lorenilson44");
+        User userSeven = new User("nicelia33");
         List<User> randomUsers = new ArrayList<>(){{
             add(userOne);
             add(userTwo);
             add(userThree);
             add(userFour);
             add(userFive);
+            add(userSix);
+            add(userSeven);
         }};
 
         Random rand = new Random();

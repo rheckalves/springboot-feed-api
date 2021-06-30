@@ -17,12 +17,10 @@ public class PostDTO {
     @JsonIgnore
     private Long id;
 
-    @NotNull
     @NotBlank
     private String content;
 
     @JsonIgnore
-    @NotNull
     private User user;
 
     @JsonIgnore

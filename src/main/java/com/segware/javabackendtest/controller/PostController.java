@@ -12,6 +12,7 @@ import com.segware.javabackendtest.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,14 +29,14 @@ public class PostController implements PostControllerDocs {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostSummaryDTO createPost(@RequestBody PostDTO post) {
+    public PostSummaryDTO createPost(@Valid @RequestBody PostDTO post) {
         User user = fakeLogin.loggedUser();
         post.setUser(user);
         return postService.createPost(post);
     }
 
     @PostMapping("/up")
-    public UpvoteSummaryDTO upvotePost(@RequestBody UpvoteDTO upvoteDTO) throws PostNotFoundException, UserNotFoundException {
+    public UpvoteSummaryDTO upvotePost(@Valid @RequestBody UpvoteDTO upvoteDTO) throws PostNotFoundException, UserNotFoundException {
         return postService.upvotePost(upvoteDTO);
     }
 

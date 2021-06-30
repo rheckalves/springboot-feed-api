@@ -12,20 +12,16 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostSummaryDTO {
-    @NotNull
+
     private Long id;
 
-    @NotNull
     private String content;
 
-    @NotNull
     private Integer upvotes = 0;
 
-    @NotNull
     private String username;
 
     private Boolean upvotedByUser = false;
 
-    @NotNull
     private Long userId;
 }

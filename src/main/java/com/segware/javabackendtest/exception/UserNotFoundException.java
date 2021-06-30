@@ -11,9 +11,9 @@ public class UserNotFoundException extends Exception {
         return this;
     }
 
-    public UserNotFoundException(String userName) {
-        super(String.format("User with username %s not found in the system.", userName));
-    }
+   // public UserNotFoundException(String userName) {
+   //     super(String.format("User with username %s not found in the system.", userName));
+   // }
 
     public UserNotFoundException(Long userId) {
         super(String.format("User with Id %s not found in the system.", userId));

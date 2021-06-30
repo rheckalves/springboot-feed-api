@@ -19,50 +19,52 @@ public class PostMapperImpl implements PostMapper {
 
     @Override
     public Post toModel(PostDTO postDTO) {
-        Post post = new Post();
-        post.setId(postDTO.getId());
-        post.setContent(postDTO.getContent());
-        post.setUser(postDTO.getUser());
-        post.setUpvotesUserIds(postDTO.getUpvotesUserIds());
-        return post;
+        return Post.builder()
+                .id(postDTO.getId())
+                .content(postDTO.getContent())
+                .user(postDTO.getUser())
+                .upvotesUserIds(postDTO.getUpvotesUserIds())
+                .build();
     }
 
     @Override
     public PostDTO toDTO(Post post) {
-        PostDTO postDTO = new PostDTO();
-        postDTO.setId(post.getId());
-        postDTO.setContent(post.getContent());
-        postDTO.setUser(post.getUser());
-        postDTO.setUpvotesUserIds(post.getUpvotesUserIds());
-        return postDTO;
+        return PostDTO.builder()
+                .id(post.getId())
+                .content(post.getContent())
+                .user(post.getUser())
+                .upvotesUserIds(post.getUpvotesUserIds())
+                .build();
     }
 
     @Override
     public Post toModel(PostSummaryDTO postSummaryDTO) {
-        Post post = new Post();
-        post.setId(postSummaryDTO.getId());
-        post.setContent(postSummaryDTO.getContent());
-        return post;
+        return Post.builder()
+                .id(postSummaryDTO.getId())
+                .content(postSummaryDTO.getContent())
+                .build();
     }
 
     @Override
     public PostSummaryDTO toSummaryDTO(Post post) {
         int upvotes;
-        PostSummaryDTO postSummaryDTO = new PostSummaryDTO();
+        boolean upvotedByUser = false;
         if (post.getId() == null || postRepository.getById(post.getId()).getUpvotesUserIds() == null) {
             upvotes = 0;
         } else {
             List<Long> upvotesList = postRepository.getById(post.getId()).getUpvotesUserIds();
             upvotes = postRepository.getById(post.getId()).getUpvotesUserIds().size();
             if (upvotesList.contains(fakeLogin.loggedUser().getId())) {
-                postSummaryDTO.setUpvotedByUser(true);
+                upvotedByUser = true;
             }
         }
-        postSummaryDTO.setId(post.getId());
-        postSummaryDTO.setContent(post.getContent());
-        postSummaryDTO.setUpvotes(upvotes);
-        postSummaryDTO.setUserId(post.getUser().getId());
-        postSummaryDTO.setUsername(post.getUser().getUsername());
-        return postSummaryDTO;
+        return PostSummaryDTO.builder()
+                .id(post.getId())
+                .content(post.getContent())
+                .upvotes(upvotes)
+                .userId(post.getUser().getId())
+                .username(post.getUser().getUsername())
+                .upvotedByUser(upvotedByUser)
+                .build();
     }
 }

@@ -1,5 +1,5 @@
 server:
-  port: $PORT
+  port: ${PORT}
 
 spring:
   jpa:
@@ -12,7 +12,7 @@ spring:
   datasource:
     platform: postgres
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/posts
-    username: postgres
-    password: postgres
-    initialization-mode: never # Para inserir dados utilize o valor {always} ou {never} para não inserir
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    initialization-mode: never
